@@ -39,18 +39,15 @@ int countWords(const char* text) {
 
 int countSyllables(const char* text) {
     int count = 0;
-    int prevWasVowel = 0;
-    int isVowel = 0;
     for (size_t i = 0; text[i] != '\0'; i++) {
         char c = text[i];
-        isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y');
+        int isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
         char prevChar = (i > 0) ? text[i - 1] : '\0';
-        int isPrevVowel = (prevChar == 'a' || prevChar == 'e' || prevChar == 'i' || prevChar == 'o' || prevChar == 'u' || prevChar == 'y');
+        int isPrevVowel = (prevChar == 'a' || prevChar == 'e' || prevChar == 'i' || prevChar == 'o' || prevChar == 'u');
         if (!isPrevVowel && isVowel) {
             count++;
         }
     }
-    // TODO: Implement this function
     return count;
 }
 
