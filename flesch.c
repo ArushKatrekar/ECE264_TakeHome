@@ -44,11 +44,10 @@ int countSyllables(const char* text) {
     for (size_t i = 0; text[i] != '\0'; i++) {
         char c = text[i];
         isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u' || c == 'y');
-        if (isVowel){
+        char prevChar = (i > 0) ? text[i - 1] : '\0';
+        int isPrevVowel = (prevChar == 'a' || prevChar == 'e' || prevChar == 'i' || prevChar == 'o' || prevChar == 'u' || prevChar == 'y');
+        if (!isPrevVowel && isVowel) {
             count++;
-            prevWasVowel = 1;
-        } else {
-            prevWasVowel = 0;
         }
     }
     // TODO: Implement this function
