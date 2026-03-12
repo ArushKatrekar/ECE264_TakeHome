@@ -20,6 +20,26 @@ int countSentences(const char* text) {
     return count==0 ? 1 : count;
 }
 
+int countWords(const char* text) {
+    int count = 0;
+    int inWord = 0;
+    for (int i = 0; text[i] != '\0'; i++) {
+        char c = text[i];
+        // A delimiter is whitespace or a sentence terminator
+        int isDelimiter = isspace(c) || c == '.' || c == ':' ||
+                          c == ';'   || c == '?' || c == '!';
+        if (isDelimiter) {
+            inWord = 0;
+        } else {
+            if (!inWord) {
+                count++;   // just crossed into a new word
+            }
+            inWord = 1;
+        }
+    }
+    return count;
+}
+
 int countSyllables(const char* text) {
     int count = 0;
     for (size_t i = 0; text[i] != '\0'; i++) {
