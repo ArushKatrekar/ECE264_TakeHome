@@ -34,20 +34,6 @@ int countSyllables(const char* text) {
     return count;
 }
 
-int countSyllables(const char* text) {
-    int count = 0;
-    for (size_t i = 0; text[i] != '\0'; i++) {
-        char c = text[i];
-        int isVowel = (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u');
-        char prevChar = (i > 0) ? text[i - 1] : '\0';
-        int isPrevVowel = (prevChar == 'a' || prevChar == 'e' || prevChar == 'i' || prevChar == 'o' || prevChar == 'u');
-        if (!isPrevVowel && isVowel) {
-            count++;
-        }
-    }
-    return count;
-}
-
 double calculateFleschScore(TextStats stats) {
     if(stats.words == 0) return 0.0;
     return 206.835 - (1.015 * ((double)stats.words / stats.sentences)) - (84.6 * ((double)stats.syllables / stats.words));
