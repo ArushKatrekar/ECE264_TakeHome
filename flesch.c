@@ -17,7 +17,7 @@ int countSentences(const char* text) {
         }
     }
     // TODO: Implement this function
-    return count==0 ? 1 : count; // Ensure at least one sentence to avoid division by zero
+    return count==0 ? 1 : count;
 }
 
 int countWords(const char* text) {
@@ -25,16 +25,18 @@ int countWords(const char* text) {
     int inWord = 0;
     for (size_t i = 0; text[i] != '\0'; i++) {
         char c = text[i];
-        int isDelimiter = isspace(c) || c == '.' || c == ':' || c == ';'|| c == '?' || c == '!';
+        int isDelimiter = isspace(c) || c == '.' || c == ':' ||
+                          c == ';'   || c == '?' || c == '!';
         if (isDelimiter) {
             inWord = 0;
-        } else if (!inWord) {
-            count++;
+        } else {
+            if (!inWord) {
+                count++;
+            }
+            inWord = 1;
         }
-        inWord = 1;
-        }
-    // TODO: Implement this function
-    return count==0 ? 1 : count; // Ensure at least one word to avoid division by zero
+    }
+    return count;
 }
 
 int countSyllables(const char* text) {
